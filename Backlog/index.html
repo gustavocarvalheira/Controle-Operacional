@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!--Import jQuery before export.js-->
+    <script type="text/javascript" src="http://10.250.3.171/libs/jquery-3.5.1.min.js"></script>
+
+    <!--Data Table-->
+    <script type="text/javascript"  src=" http://10.250.3.171/libs/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src=" http://10.250.3.171/libs/dataTables.buttons.min.js"></script>
+
+    <!--Export table buttons-->
+    <script type="text/javascript" src="http://10.250.3.171/libs/jszip.min.js"></script>
+    <script type="text/javascript" src="http://10.250.3.171/libs/pdfmake.min.js" ></script>
+    <!-- <script type="text/javascript"  src="http://localhost/libs/vfs_fonts.js"></script> -->
+    <script type="text/javascript" src="http://10.250.3.171/libs/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="http://10.250.3.171/libs/buttons.print.min.js"></script>
+
+	<!--Export table button CSS-->
+
+	<link rel="stylesheet" href="http://10.250.3.171/libs/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="http://10.250.3.171/libs/buttons.dataTables.min.css">
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link href="http://10.250.3.171/libs/bootstrap.css">
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<!-- <link href="libs/googlecss.css" rel="stylesheet"> -->
+	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="http://localhost/libs/font-awesome.min.css"> -->
+
+	<script src="http://10.250.3.171//libs/bootstrap.min.js"></script>
+
+
+	<script src="functions.js"></script>
+
+	<title>Painel de Gestão Operacional - Regras & Cadastro</title>
+
+<script>
+
+
+$(document).ready(function(){
+	
+	bkl_validalogin(); // Verifica se o usuário está logado.
+
+	bkl_set_global_variables(); //Congigura variáveis de sessão.
+
+	bkl_painel("ALL","ALL"); //monta painel de chamados gerais
+
+	bkl_modais("Outros","F");
+	bkl_modais("TASY","F");
+	bkl_modais("WPD","F");
+	bkl_modais("MV","F");
+	bkl_modais("SEM_SISTEMA","F");
+
+	bkl_modais("Outros","A");
+	bkl_modais("TASY","A");
+	bkl_modais("WPD","A");
+	bkl_modais("MV","A");
+	bkl_modais("SEM_SISTEMA","A");
+
+	bkl_modais("Outros","B");
+	bkl_modais("TASY","B");
+	bkl_modais("WPD","B");
+	bkl_modais("MV","B");
+	bkl_modais("SEM_SISTEMA","B");
+
+	bkl_modais("Outros","C");
+	bkl_modais("TASY","C");
+	bkl_modais("WPD","C");
+	bkl_modais("MV","C");
+	bkl_modais("SEM_SISTEMA","C");
+
+	bkl_modais("Outros","D");
+	bkl_modais("TASY","D");
+	bkl_modais("WPD","D");
+	bkl_modais("MV","D");
+	bkl_modais("SEM_SISTEMA","D");
+
+	bkl_modais("Outros","E");
+	bkl_modais("TASY","E");
+	bkl_modais("WPD","E");
+	bkl_modais("MV","E");
+	bkl_modais("SEM_SISTEMA","E");
+
+
+	$( "#menu_prioridades" ).click(function() {
+
+		bkl_painel_prioridades("none");
+
+		bkl_modais_prioridades("Outros","PRIORID");
+		bkl_modais_prioridades("TASY","PRIORID");
+		bkl_modais_prioridades("WPD","PRIORID");
+		bkl_modais_prioridades("MV","PRIORID");
+		bkl_modais_prioridades("SEM_SISTEMA","PRIORID");
+
+		bkl_modais_prioridades("Outros","PRIORID_PEND");
+		bkl_modais_prioridades("TASY","PRIORID_PEND");
+		bkl_modais_prioridades("WPD","PRIORID_PEND");
+		bkl_modais_prioridades("MV","PRIORID_PEND");
+		bkl_modais_prioridades("SEM_SISTEMA","PRIORID_PEND");
+
+		bkl_modais_prioridades("Outros","REABERTURA");
+		bkl_modais_prioridades("TASY","REABERTURA");
+		bkl_modais_prioridades("WPD","REABERTURA");
+		bkl_modais_prioridades("MV","REABERTURA");
+		bkl_modais_prioridades("SEM_SISTEMA","REABERTURA");
+		
+	});
+
+	$( "#bt_atualizar" ).click(function() {
+	  $("#coverScreen").show();
+	  bkl_atualizar_base_oracle();					
+	});
+
+	$( "#menu_tasy" ).click(function() {
+	  bkl_painel("Tasy","ALL");
+	});
+
+	$( "#menu_wpd" ).click(function() {
+	  bkl_painel("WPD","ALL");
+	});
+
+	$( "#menu_mv" ).click(function() {
+	  bkl_painel("MV","ALL");
+	});
+
+	$( "#menu_corp" ).click(function() {
+	  bkl_painel("Outros","ALL");
+	});
+
+	$( "#menu_sem" ).click(function() {
+	  bkl_painel("SEM_SISTEMA","ALL");
+	});
+
+	$("#coverScreen").hide();
+
+	bkl_ultima_atualizacao();
+	
+	$("#bt_sair").click(function(){
+		bkl_logoff();
+	});
+
+	$("#bt_config").click(function(){
+		bkl_carrega_analistas();
+	});
+
+	$("#menu_carteira").click(function(){
+		bkl_carrega_analistas_carteira();
+	});
+
+	$("#btn_carteira").click(function(){
+		bkl_carrega_analistas_carteira();
+	});
+	
+	$("#bt_buscar").click(function(){
+		bkl_ler_chamado_view($("#cod_chamado").val());
+	});
+	
+	$("#bt_priorizar").click(function(){
+  	    $("#coverScreen").show();
+		bkl_criar_chamado_priorizacao($("#cpf_hidden").val(),$("#cod_chamado").val(),$("#str_classificacao").val(),$("#str_motivo_prioridade").val(),$("#int_valor").val());
+	});
+
+	//Seleção da unidade escopo do usuário 
+	$("#unidade_escopo").on('change', function() {
+		if($("#unidade_escopo option:selected").text()!="Selecione uma unidade..."){
+
+			$.ajax({
+				url: 'http://10.250.3.171:8000/atualiza_unidade_escopo',
+				type: "GET",
+				data: {"usuario":$("#id_hidden").text(),"unidade":$("#unidade_escopo option:selected").text()},
+				dataType: 'json',
+				success: function (data) {
+					
+					$("#unidades_hidden").text($("#unidade_escopo option:selected").text());
+					
+					
+					$.ajax({
+						url: 'http://10.250.3.171/atualiza_sessao.php',
+						type: "POST",
+						data: {"str_unidade":$("#unidade_escopo option:selected").text()},
+						success: function () {
+					
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							alert("Atualização sessao - "+xhr.status);
+							alert(thrownError);
+						}
+
+					});
+					
+					
+					
+					
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					alert("Atualização da unidade escopo - "+xhr.status);
+					alert(thrownError);
+				}
+
+			});
+
+		}else{
+		
+			alert("Nada feito!");
+
+		}
+
+	});
+
+	$("#configModal").on('show.bs.modal', function(){
+		
+		bkl_preenche_unidades_escopo();
+		
+	});
+
+	$("#buscachamadoModal").on('show.bs.modal', function(){
+		
+		$("#cod_chamado").text("");
+		
+	});
+
+
+
+	//Carrega o percentual de priorizacões nos últimos 30 dias para as unidades do usuário logado
+	//Busca pelo percentual de prioridades 
+	$("#priorizachamadoModal").on('show.bs.modal', function(){
+		
+		content = "<center><div class='loader'></div></center>";
+		$("#priorizações").html(content);
+
+		$.ajax({
+			url: 'http://10.250.3.171:8000/percentual_prioridades',
+			type: "GET",
+			data: {"str_unidades":$("#unidades_hidden").text()},
+			dataType: 'json',
+			success: function (data) {
+
+				content2 = "";	
+				for (var x  = 0; x < data.length; x++) {
+			
+				    content2 = data[x].PRIORIDADE;
+
+				}
+				
+				if (content2 == null) {
+					content2 = "-";
+				}
+				$("#priorizações").html(content2+"%");
+				$("#p_unidades").html($("#unidades_hidden").text());
+			
+				if (content2>10) {
+				
+					$("#box_priorizacoes").css("background-color", "red");
+				
+				}else if (content2<=10) {
+				
+				    $("#box_priorizacoes").css("background-color", "green");
+				
+				}else if (content2=="-") {
+					
+					 $("#box_priorizacoes").css("background-color", "gray");
+					
+				}
+			
+
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert("Busca pelo percentual de prioridades - "+xhr.status);
+				alert(thrownError);
+			}
+
+		});
+	});
+
+	//Funcão para limpar os campos dos modais quando são encerrados. 
+	$('[data-dismiss=modal]').on('click', function (e) {
+	    var $t = $(this),
+	        target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
+
+	  $(target)
+	    .find("input,textarea,select")
+	       .val('')
+	       .end()
+	    .find("input[type=checkbox], input[type=radio]")
+	       .prop("checked", "")
+	       .end();
+	});
+
+	$(".allownumericwithdecimal").on("keypress keyup blur",function (event) {
+	        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+	        if ((event.which != 46 || $(this).val().indexOf('.') != -1 || $(this).val().indexOf(',') != -1) && (event.which < 48 || event.which > 57)) {
+	          event.preventDefault();
+	        }
+	});
+
+
+
+});
+
+
+</script>
+
+<style>
+	
+.loader {
+	border: 16px solid #f3f3f3; /* Light grey */
+	border-top: 16px solid #BBBBBB; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.parent {
+	position: relative;
+	overflow: hidden;
+}
+
+.child {
+	overflow-y: scroll;
+}
+
+
+.LockOn {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 105%;
+    height: 105%;
+    background-color:white;
+    vertical-align:bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size:large;
+    color:blue;
+    font-style:italic;
+    font-weight:400;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+.card:hover {
+	background-color: #F0F0F0;
+	cursor:pointer;
+
+}
+.modal {
+
+	width: 100%; /* Full width */
+}
+
+
+.centralizado {
+
+    display: flex;
+    align-items: center; //centraliza horizontalmente
+    justify-content: center; //cetraliza verticalmente
+}
+
+</style>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+ 		 <img src="img/logo-rededor.png">
+        </div>
+        <div style="font-size:11px" class="sidebar-brand-text mx-3">Painel de Gestão Operacional</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-th"></i>
+          <span>Painel</span></a>
+      </li>
+
+      <li class="nav-item active" id="bt_atualizar">
+        <a class="nav-link" style="cursor:pointer">
+          <i class="fas fa-sync"></i>
+          <span style="cursor:pointer">Atualizar Base</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Menu
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw  fa-database"></i>
+          <span>Sistemas</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Sistemas Front:</h6>
+            <a class="collapse-item" id="menu_tasy">Tasy</a>
+            <a class="collapse-item" id="menu_wpd">WPD</a>
+            <a class="collapse-item" id="menu_mv">MV</a>
+            <a class="collapse-item" id="menu_corp">Outros</a>
+            <a class="collapse-item" id="menu_sem">Sem Sistema</a>
+          </div>
+        </div>
+      </li>
+
+	 <!-- Nav Item - Prioridades Collapse Menu -->
+	 <li class="nav-item">
+	   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrioridades" aria-expanded="true" aria-controls="collapseTwo">
+	     <i class="fas fa-fw  fas fa-star"></i>
+	     <span>Opções</span>
+	   </a>
+	   <div id="collapsePrioridades" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+	     <div class="bg-white py-2 collapse-inner rounded">
+	       <h6 class="collapse-header">Opções</h6>
+	       <a class="collapse-item" id="menu_prioridades" style="cursor:pointer">Prioridades / Reaberturas</a>
+	       <a class="collapse-item" id="menu_carteira" data-toggle="modal" data-target="#carteiraModal" style="cursor:pointer">Carteiras</a>
+	       <a class="collapse-item" id="menu_buscar_chamado" data-toggle="modal" data-target="#buscachamadoModal" style="cursor:pointer">Buscar chamado</a>
+	     </div>
+	   </div>
+	 </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-id-badge"></i>
+          <span>Pontos Focais</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pontos Focais:</h6>
+            <a class="collapse-item" >Gustavo Carvalheira</a>
+            <a class="collapse-item" >Raquel Winter</a>
+            <a class="collapse-item" >Allan Gomes</a>
+            <a class="collapse-item" >Edi Morett</a>
+            <a class="collapse-item" >Rogéria</a>
+            <a class="collapse-item" >Antônio Neto</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnalistas" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw  fa-id-badge"></i>
+          <span>Analistas</span>
+        </a>
+        <div id="collapseAnalistas" class="collapse" aria-labelledby="Analistas" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Analistas:</h6>
+            <a class="collapse-item" >Gustavo Carvalheira</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUnidades" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw  far fa-hospital"></i>
+          <span>Unidades</span>
+        </a>
+        <div id="collapseUnidades" class="collapse" aria-labelledby="Unidades" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Unidades:</h6>
+
+			<div id="unidades">
+            <a class="collapse-item" href="utilities-color.html">Barra D'Or</a>
+            <a class="collapse-item" href="utilities-border.html">Rios D'Or</a>
+            <a class="collapse-item" href="utilities-animation.html">RioMar</a>
+            <a class="collapse-item" href="utilities-other.html">Oeste D'Or</a>
+            <a class="collapse-item" href="utilities-other.html">Bangu</a>
+            <a class="collapse-item" href="utilities-other.html">Real D'Or</a>
+            <a class="collapse-item" href="utilities-other.html">Niterói D'Or</a>
+			</div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+		<!-- Informação da última atualização -->
+		<ul class="navbar-nav">
+			<div id='data_atualizacao' style='width:400%;'>
+        	</div>
+		</ul>
+
+		<ul class="navbar-nav">
+			<div id='button_data_atualizacao'>
+			</div>
+		</ul>
+
+		<ul class="navbar-nav">
+			<div id='espaço'>
+			</div>
+		</ul>
+
+		<ul class="navbar-nav">
+			<div id='login' class='centralizado' style='font-size:12px'>
+			</div>
+		</ul>
+
+		  <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="login2" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+				<input type="hidden" id="cpf_hidden" VALUE="">
+				<input type="hidden" id="id_hidden" VALUE="">
+				<input type="hidden" id="unidades_hidden" VALUE="">
+                <img class="img-profile rounded-circle" src="img/user.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Perfil
+                </a>
+                <a id="bt_config" class="dropdown-item" style="cursor:pointer" data-toggle="modal" data-target="#configModal">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Configurações
+                </a>
+                <a class="dropdown-item">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Log de Atividades
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" style="cursor:pointer" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Sair
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div id="painel" class="container-fluid">
+
+	    </div>
+       <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Carvalheira Consultoria 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sair do Novo Backlog!</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Tem certeza que deseja sair?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a id="bt_sair" class="btn btn-primary" href="/">Sair</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Config Modal-->
+  <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="top:0px;margin:0px;padding-top:0px;overflow: hidden;">
+			<div class="container my-4" style="float:left;padding:10px;height:90%;width:30%;background:#E8E8E8;">
+				<p class="font-weight-normal">Analistas em carteira:</p>
+				<hr>
+				<ul id="analistas" class="list-group list-group-flush" style="height:85%; overflow: scroll;">
+					<li class="list-group-item">
+				  	  	<!-- Default checked -->
+					</li>
+				</ul>
+			</div>
+
+			<div class="container my-4" style="float:left;padding:10px;height:90%;width:30%;background:#E8E8E8;margin:10px">
+				<p class="font-weight-normal">Unidade Escopo:</p>
+				<hr>
+				<ul id="unidade_escopo2" class="list-group list-group-flush" style="height:85%; overflow: scroll;">
+					<li class="list-group-item">
+						<select class="form-control" id="unidade_escopo">
+						  <option value="RJ - Hospital Rios D'Or">Selecione uma unidade...</option selected>
+						</select>
+					</li>
+				</ul>
+			</div>
+
+        </div>
+        <div class="modal-footer">
+          <a id="bt_sair" class="btn btn-primary" style="color:white" data-dismiss="modal">Sair</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Carteiras Modal-->
+  <div class="modal fade" id="carteiraModal" style="z-index: 9999" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Carteiras por Analista</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="top:0px;margin:0px;padding-top:0px" >
+			<div class="container my-4" style="float:left;padding:10px;width:100%">
+			<ul id="analistas_carteira" class="list-group list-group-flush">
+				<li class="list-group-item">
+				  <!-- Default checked -->
+				  <div class="custom-control custom-checkbox">
+					  <center><div class='loader'></div></center></div>
+				</li>
+			</ul>
+			</div>
+        </div>
+        <div class="modal-footer">
+          <a id="bt_sair" class="btn btn-primary" style="color:white" data-dismiss="modal">Fechar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal de Detalhes do Chamado-->
+  <div class="modal fade" id="chamadoModal" style="z-index: 9998" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div id="detalhes_chamado_header" class="modal-header">
+
+
+        </div>
+        <div id= "detalhes_chamado_body" class="modal-body" style="top:0px;margin:10px;padding-top:0px">
+
+        </div>
+        <div class="modal-footer">
+          <a id="bt_sair" class="btn btn-primary" style="color:white" data-dismiss="modal">Fechar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal de Busca dos Detalhes do Chamado-->
+  <div class="modal fade" id="buscachamadoModal" style="z-index: 9997" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left:10px">
+          <h5 class="modal-title" id="exampleModalLabel">Busca por chamados</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="top:0px;margin:0px;padding-top:0px">
+		  <div class="form-row">
+			  Informe o número do chamado:
+	        <input type="text" class="form-control" id="cod_chamado" value="" required>
+		  </div>
+        </div>
+        <div class="modal-footer">
+          <a id="bt_buscar" class="btn btn-primary" data-toggle="modal" data-target="#chamadoModal" data-dismiss="modal" style="color:white" >Buscar</a>
+          <a id="bt_sair" class="btn btn-primary" style="color:white" data-dismiss="modal">Fechar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Modal do Priorizar Chamado-->
+  <div class="modal fade" id="priorizachamadoModal" style="z-index: 9999" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Informações da Prioridade</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="top:0px;margin:0px;padding-top:0px">
+		 <br>
+		  <div class="form-row">
+		      <label for="validationCustom01">Classificação da prioridade</label>
+			  <select class="form-control" id="str_classificacao">
+			    <option>Selecione...</option selected>
+				<option>AUDITOR “IN LOCO”</option>
+				<option>CADASTRO DE MAT/MED PARA PAGAMENTO (FORNECEDOR AGUARDANDO PAGAMENTO)</option>
+				<option>CONTA PARTICULAR</option>
+				<option>CONTA PERDENDO PRAZO DE ENTREGA (90 DIAS)</option>
+				<option>ERRO NO ENVIO DO XML</option>
+				<option>FATURAMENTO SIMULTÂNEO</option>
+				<option>IMPACTO PUBLICAÇÃO CNE</option>
+				<option>PRECIFICAÇÃO DE HM/SADT</option>
+				<option>PRECIFICAÇÃO MAT E MED</option>
+				<option>PROXIMO A DATA DE ENTREGA DO CONVÊNIO (FECHAMENTO)</option>
+				<option>VALORES ZERADOS PARA CONSUMO GERAIS</option>
+				<option>OUTROS</option>
+			  </select>   		  
+		  </div>
+		  <div class="form-row">
+     		  <label for="validationCustom01">Motivo da prioridade</label>
+		      <input type="text" class="form-control" id="str_motivo_prioridade" value="" required>
+   		  </div>
+		  <div class="form-row">
+		      <label for="validationCustom01">Valor</label>
+			  <input type="text" class="form-control allownumericwithdecimal" id="int_valor" value="" required>
+   		  </div>
+  		  <div id="box_priorizacoes" style="box-shadow: 5px 10px 8px #888888; text-align:center;background:gray;color:white;border-radius:10px;float:right;margin-top:10px;margin-right:0px; height:45%; width:200px;font-size:92px;">
+		  	 <div id="priorizações">
+		  	 </div>
+			 <div style="position:relative;float:top;padding-bottom: 25px;;text-align: center;font-size:15px;">
+				 PRIORIZAÇÕES NOS ÚLTIMOS 30 DIAS<br>
+				 <p style="font-size:10px" id="p_unidades"></p>
+			 </div>
+		  </div>
+		<br>
+	</div>
+        <div class="modal-footer">
+          <a id="bt_priorizar" class="btn btn-primary" data-toggle="modal" style="color:white" >Priorizar</a>
+          <a id="bt_sair" class="btn btn-primary" style="color:white" data-dismiss="modal">Fechar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="modais">
+</div>
+
+<div id="modal_carteira">
+</div>
+
+
+<div id="coverScreen" class="LockOn" style="z-index: 9999">
+	<center>
+	<div class="spinner-grow text-primary" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+	<div class="spinner-grow text-secondary" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+	<div class="spinner-grow text-success" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+	</center>
+</div>
+
+</body>
+
+</html>

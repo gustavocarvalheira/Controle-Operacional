@@ -1,0 +1,8 @@
+AHD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST =cscprd01-scan.rededor.corp)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME =AHD)
+    )
+  )

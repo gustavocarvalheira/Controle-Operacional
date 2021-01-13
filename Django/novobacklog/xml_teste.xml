@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soap:Body>
+      <OpenBasicResponse xmlns="Automidia">
+         <transaction xmlns="TransactionDataOfRequest">
+            <success>true</success>
+            <code>0</code>
+            <value>
+               <request>DOR07830133</request>
+               <project />
+               <id3part />
+               <package>WEBSERVICE</package>
+               <rstatus>Aguardando Atendimento</rstatus>
+               <rpriority>Sem Prioridade</rpriority>
+               <reqtype>Solicitação</reqtype>
+               <opendate>2020-12-14T16:56:00</opendate>
+               <closedate>0001-01-01T00:00:00</closedate>
+               <curranal>admin</curranal>
+               <origanal>admin</origanal>
+               <groupanal>0</groupanal>
+               <closed>0</closed>
+               <rlocked>0</rlocked>
+               <estimcost>0</estimcost>
+               <totalcost>0</totalcost>
+               <aprovanltype>0</aprovanltype>
+               <aprovclitype>0</aprovclitype>
+               <aprovcliexactounit>0</aprovcliexactounit>
+               <approvalSource xsi:nil="true" />
+               <approvalFlowId xsi:nil="true" />
+               <approvalStatus xsi:nil="true" />
+               <approvalBaseId xsi:nil="true" />
+               <resptime>2020-12-14T16:56:00</resptime>
+               <resltime>2020-12-14T16:56:00</resltime>
+               <slevel />
+               <client>001</client>
+               <requestor />
+               <category>Cadastro e Regras Comerc</category>
+               <product>Priorizacao de Chamados</product>
+               <process />
+               <problem />
+               <abstract>Cadastro e Regras Comerc:Priorizacao de Chamados::</abstract>
+               <descript>Cadastro e Regras Comerc:Priorizacao de Chamados::</descript>
+               <location>Corporativo RJ - Tec Da Informação Operações</location>
+               <orgunit>REDEDOR.TESTE - USUARIOS</orgunit>
+               <charge />
+               <respmins>0</respmins>
+               <reslmins>0</reslmins>
+               <reqsource>Portal</reqsource>
+               <resourceid />
+               <equip />
+               <qform>CRC_PriorizacaoChamadosV2</qform>
+               <InsertDate>0001-01-01T00:00:00</InsertDate>
+               <UpdateDate>0001-01-01T00:00:00</UpdateDate>
+               <clientInfo>
+                  <client>001</client>
+                  <id>55375</id>
+                  <uuid>42B760D463ED7770E0530100007F4EC0</uuid>
+                  <fullname>RDSL- Teste Colaborador</fullname>
+                  <nickname>Teste</nickname>
+                  <sex />
+                  <title>Analista</title>
+                  <manager>0</manager>
+                  <notes />
+                  <inactive>0</inactive>
+                  <syncAccount>true</syncAccount>
+                  <optViewOunit>Undefined</optViewOunit>
+                  <options>None</options>
+                  <boss />
+                  <substitute />
+                  <langid>0</langid>
+                  <timezone>GMT-03:00</timezone>
+                  <orgunit>REDEDOR.TESTE - USUARIOS</orgunit>
+                  <location>Corporativo RJ - Tec Da Informação Operações</location>
+                  <division />
+                  <region />
+                  <address />
+                  <address2 />
+                  <zip />
+                  <city />
+                  <state />
+                  <notifymail>false</notifymail>
+                  <emailid>RDSL@requestia.com</emailid>
+                  <emailalt />
+                  <notifypager>false</notifypager>
+                  <pagernumber />
+                  <phone1 />
+                  <phone2>12</phone2>
+                  <phone3 />
+                  <phone4 />
+                  <phonelbl1 />
+                  <phonelbl2 />
+                  <phonelbl3 />
+                  <phonelbl4 />
+                  <netid>001</netid>
+                  <lastpwdchg>2020-06-01T07:19:47</lastpwdchg>
+                  <firstlogin>true</firstlogin>
+                  <licenseid>0</licenseid>
+                  <unsubscribe>false</unsubscribe>
+                  <unsubscribedate>0001-01-01T00:00:00</unsubscribedate>
+                  <insertdate>2016-08-24T19:53:11</insertdate>
+                  <updatedate>2020-12-02T14:38:22</updatedate>
+                  <charge />
+                  <slevel />
+                  <skill />
+                  <managelevel />
+                  <managelevels>
+                     <add>Administração de Pessoal</add>
+                     <add>Gestor</add>
+                     <add>Colaborador</add>
+                     <add>Estoque</add>
+                     <add>Benefícios</add>
+                     <add>PA - (adm)</add>
+                     <add>Acesso Conecta</add>
+                     <add>CRC_Gerente</add>
+                     <add>CRC_AcessoTemporario</add>
+                     <add>CRC_Priorizacoes</add>
+                     <add>Farm Corp/Unid Med</add>
+                     <add>Colaborador Conecta</add>
+                     <add>Gestor Conecta</add>
+                     <add>Negociacoes Comerciais</add>
+                     <add>Tesouraria Dividas</add>
+                  </managelevels>
+               </clientInfo>
+               <form name="CRC_PriorizacaoChamadosV2" title="Priorização de Chamados" session="7839898">
+                  <add name="CRC_PopulaChamadosAbertos" ordinal="2" title="Número do chamado à ser priorizado" control="Text" type="String">DOR07830100</add>
+                  <add name="CRC_SelecioneChamado" ordinal="3" title="Selecione o número do chamado em que deseja priorizar:" control="SingleSelect" type="String">DOR07830100</add>
+                  <add name="CRC_MotivoPriorizacao" ordinal="6" title="Informe o motivo da priorização" control="Text" type="String">Teste</add>
+                  <add name="CRC_Classifica_Prioridade" ordinal="7" title="Classificação da Prioridade" control="SingleSelect" type="String">CONTA PARTICULAR</add>
+                  <add name="CRC_Valor_Associado" ordinal="8" title="Valor associado ao Chamado" control="Numeric" type="Decimal">30000</add>
+                  <add name="CRC_Pontuacao" ordinal="9" title="Pontuação" control="Numeric" type="Decimal">35</add>
+               </form>
+            </value>
+         </transaction>
+      </OpenBasicResponse>
+   </soap:Body>
+</soap:Envelope>
